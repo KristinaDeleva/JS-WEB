@@ -22,7 +22,9 @@ let userSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    articles: {type: mongoose.Schema.Types.ObjectId, ref: 'Article'}
+    articles: {
+        type: mongoose.Schema.Types.ObjectId, ref: 'Article'
+    }
 }, {
     usePushEach: true
 });
@@ -40,7 +42,7 @@ userSchema.method({
             return false;
         }
 
-        let isAuthor = article.author._id.equals(this.id);
+        let isAuthor = article.author.equals(this.id);
 
         return isAuthor;
     },

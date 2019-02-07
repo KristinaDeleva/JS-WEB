@@ -3,7 +3,9 @@ const User = require('../models/User');
 mongoose.Promise = global.Promise;
 
 module.exports = (config) => {
-    mongoose.connect(config.connectionString, {useNewUrlParser: true});
+    mongoose.connect(config.connectionString, {
+        useMongoClient: true
+    });
 
     let database = mongoose.connection;
     database.once('open', (err) => {
