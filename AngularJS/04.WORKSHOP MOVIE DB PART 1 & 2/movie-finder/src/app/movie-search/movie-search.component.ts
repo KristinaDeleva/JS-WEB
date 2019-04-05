@@ -14,17 +14,14 @@ export class MovieSearchComponent implements OnInit {
 
   constructor(private movieService: MovieService,
     private route: ActivatedRoute) { }
-	
-	ngDoCheck() {
-		this.movieService.searchMovie(this.query)
-      .subscribe(data => {
-        this.searchedMovies = data['results'];
-      });
-	}
  
   ngOnInit() {
     this.route.queryParams.subscribe((params: Params) => {
       this.query = params['search'];
-    })
+    });
+	this.movieService.searchMovie(this.query)
+      .subscribe(data => {
+        this.searchedMovies = data['results'];
+    });
   }
 }
